@@ -395,7 +395,7 @@ function App() {
     };
 
     return (
-        <Container ref={focusElement} tabIndex="0" onKeyDown={handleKey}>
+        <Container ref={focusElement} tabIndex="0" onKeyDown={handleKey} {...handlers}>
             <Arena height={GAME_HEIGHT} width={GAME_WIDTH}>
                 <Background
                     src={"./img/bg.png"}

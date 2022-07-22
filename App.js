@@ -508,7 +508,7 @@ function App() {
 
     return React.createElement(
         Container,
-        { ref: focusElement, tabIndex: "0", onKeyDown: handleKey },
+        Object.assign({ ref: focusElement, tabIndex: "0", onKeyDown: handleKey }, handlers),
         React.createElement(
             Arena,
             { height: GAME_HEIGHT, width: GAME_WIDTH },
