@@ -449,13 +449,14 @@ function App() {
 
     // Handle swipe gestures
     var handlers = swipeable.useSwipeable({
-        onSwipedLeft: function onSwipedLeft() {
-            setIsMovingLeft(true);
-            setIsMovingRight(false);
-        },
-        onSwipedRight: function onSwipedRight() {
-            setIsMovingRight(true);
-            setIsMovingLeft(false);
+        onSwipeStart: function onSwipeStart(eventData) {
+            if (eventData.dir === "Right") {
+                setIsMovingRight(true);
+                setIsMovingLeft(false);
+            } else if (eventData.dir === "Left") {
+                setIsMovingLeft(true);
+                setIsMovingRight(false);
+            }
         },
         preventScrollOnSwipe: true,
         trackMouse: true
@@ -512,16 +513,8 @@ function App() {
         React.createElement(
             Arena,
             { height: GAME_HEIGHT, width: GAME_WIDTH },
-            React.createElement(Background, {
-                src: "./img/bg.png",
-                top: backgroundPosition
-            }),
-            React.createElement(Obstacle, {
-                id: "1",
-                lane: obstaclePosition,
-                size: OBSTACLE_SIZE,
-                top: obstacleTop
-            }),
+            React.createElement(Background, { src: "./img/bg.png", top: backgroundPosition }),
+            React.createElement(Obstacle, { id: "1", lane: obstaclePosition, size: OBSTACLE_SIZE, top: obstacleTop }),
             React.createElement(Obstacle, {
                 id: "2",
                 lane: obstaclePositionTwo,

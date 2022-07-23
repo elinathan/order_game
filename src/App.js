@@ -320,13 +320,14 @@ function App() {
 
     // Handle swipe gestures
     const handlers = swipeable.useSwipeable({
-        onSwipedLeft: () => {
-            setIsMovingLeft(true);
-            setIsMovingRight(false);
-        },
-        onSwipedRight: () => {
-            setIsMovingRight(true);
-            setIsMovingLeft(false);
+        onSwipeStart: (eventData) => {
+            if (eventData.dir === "Right") {
+                setIsMovingRight(true);
+                setIsMovingLeft(false);
+            } else if (eventData.dir === "Left") {
+                setIsMovingLeft(true);
+                setIsMovingRight(false);
+            }
         },
         preventScrollOnSwipe: true,
         trackMouse: true,
@@ -397,16 +398,8 @@ function App() {
     return (
         <Container ref={focusElement} tabIndex="0" onKeyDown={handleKey} {...handlers}>
             <Arena height={GAME_HEIGHT} width={GAME_WIDTH}>
-                <Background
-                    src={"./img/bg.png"}
-                    top={backgroundPosition}
-                />
-                <Obstacle
-                    id="1"
-                    lane={obstaclePosition}
-                    size={OBSTACLE_SIZE}
-                    top={obstacleTop}
-                />
+                <Background src={"./img/bg.png"} top={backgroundPosition} />
+                <Obstacle id="1" lane={obstaclePosition} size={OBSTACLE_SIZE} top={obstacleTop} />
                 <Obstacle
                     id="2"
                     lane={obstaclePositionTwo}
