@@ -1,3 +1,13 @@
+/**
+ * @author Eli Nathan
+ * @email enathan@upenn.edu
+ *
+ * Racing game where player has to avoid obstacles while collecting coins. Score and 
+ * velocity gradually increase over time. Built in React without build tooling.
+ * I don't plan on writing code like this again, but this blew up in scope, and I 
+ * didn't want to tear anything down
+ */
+
 "use strict";
 
 const CAR_SIZE = 40;
@@ -27,7 +37,16 @@ const getLanePosition = (laneNumber) => {
 };
 
 function App() {
-    // Getting hooks from the global variable "React"
+    /**
+     * Yeahhhhhhh, so I orginally wanted to make this in one single .js file without build 
+     * tooling. I thought I'd need to call useState maybe 5 times, but I kept wanting to 
+     * add new features and wanted to deploy this easily.
+     * 
+     * Also React is so terrible for game development that I figured this code will never see
+     * the light of day anyway, so why not.
+     * 
+     * Frontend development is my ~passion~.
+     */
     const [carPosition, setCarPosition] = React.useState(laneTwoPosition);
     const [carLane, setCarLane] = React.useState(2);
     const [carAngle, setCarAngle] = React.useState(0);
@@ -322,7 +341,8 @@ function App() {
     const handlers = swipeable.useSwipeable({
         preventScrollOnSwipe: true,
         trackMouse: true,
-        onSwipeStart: (eventData) => {
+        onSwiping: (eventData) => {
+            console.log(eventData);
             if (eventData.dir === "Right") {
                 setIsMovingRight(true);
                 setIsMovingLeft(false);
@@ -330,7 +350,7 @@ function App() {
                 setIsMovingLeft(true);
                 setIsMovingRight(false);
             }
-        }
+        },
     });
 
     // check car position to see if it has reached a lane,
@@ -441,7 +461,7 @@ function App() {
                 <span id="icon"></span>
                 <span id="coin_coint">{addLeadingZeros(coinCount, 3)}</span>
                 <GameEndScreen isGameEnd={!hasGameStarted} onClick={restart}>
-                    <div id="game_over">GAME OVER</div>
+                    <div id="game_over"> GAME OVER</div>
                     <div id="score">Score: {addLeadingZeros(Math.floor(score), 4)}</div>
                     <div id="puff_points">Puff Points: {addLeadingZeros(coinCount, 3)}</div>
                     <div id="restart_button"></div>
@@ -467,10 +487,11 @@ const Car = styled.div`
 `;
 
 const Container = styled.div`
-    transform-origin: top left;
-    transform: scale(2);
+    transform-origin: top;
+    transform: scale(1.6);
     display: flex;
-    width: max-content;
+    width: min-content;
+    margin: 0 auto;
     justify-content: center;
     outline: none;
     & #coin_coint {
@@ -570,10 +591,10 @@ const GameEndScreen = styled.div`
     color: white;
     visibility: ${(props) => (props.isGameEnd ? "visible" : "hidden")};
     & #game_over {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         font-weight: 600;
         filter: drop-shadow(2px 2px 0 black);
-        letter-spacing: 1rem;
+        letter-spacing: 0.7rem;
         margin-bottom: -0.2rem;
     }
     & #score {
