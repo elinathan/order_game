@@ -320,6 +320,8 @@ function App() {
 
     // Handle swipe gestures
     const handlers = swipeable.useSwipeable({
+        preventScrollOnSwipe: true,
+        trackMouse: true,
         onSwipeStart: (eventData) => {
             if (eventData.dir === "Right") {
                 setIsMovingRight(true);
@@ -328,9 +330,7 @@ function App() {
                 setIsMovingLeft(true);
                 setIsMovingRight(false);
             }
-        },
-        preventScrollOnSwipe: true,
-        trackMouse: true,
+        }
     });
 
     // check car position to see if it has reached a lane,
@@ -441,7 +441,7 @@ function App() {
                 <span id="icon"></span>
                 <span id="coin_coint">{addLeadingZeros(coinCount, 3)}</span>
                 <GameEndScreen isGameEnd={!hasGameStarted} onClick={restart}>
-                    <div id="game_over">Game Over</div>
+                    <div id="game_over">GAME OVER</div>
                     <div id="score">Score: {addLeadingZeros(Math.floor(score), 4)}</div>
                     <div id="puff_points">Puff Points: {addLeadingZeros(coinCount, 3)}</div>
                     <div id="restart_button"></div>
@@ -467,8 +467,10 @@ const Car = styled.div`
 `;
 
 const Container = styled.div`
+    transform-origin: top left;
+    transform: scale(2);
     display: flex;
-    width: 100%;
+    width: max-content;
     justify-content: center;
     outline: none;
     & #coin_coint {
@@ -571,6 +573,7 @@ const GameEndScreen = styled.div`
         font-size: 2.5rem;
         font-weight: 600;
         filter: drop-shadow(2px 2px 0 black);
+        letter-spacing: 1rem;
         margin-bottom: -0.2rem;
     }
     & #score {
