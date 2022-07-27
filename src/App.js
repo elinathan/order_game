@@ -2,9 +2,9 @@
  * @author Eli Nathan
  * @email enathan@upenn.edu
  *
- * Racing game where player has to avoid obstacles while collecting coins. Score and 
+ * Racing game where player has to avoid obstacles while collecting coins. Score and
  * velocity gradually increase over time. Built in React without build tooling.
- * I don't plan on writing code like this again, but this blew up in scope, and I 
+ * I didn't plan on writing code like this, but I kept wanting to add new features, and I
  * didn't want to tear anything down
  */
 
@@ -38,13 +38,13 @@ const getLanePosition = (laneNumber) => {
 
 function App() {
     /**
-     * Yeahhhhhhh, so I orginally wanted to make this in one single .js file without build 
-     * tooling. I thought I'd need to call useState maybe 5 times, but I kept wanting to 
+     * Yeahhhhhhh, so I orginally wanted to make this in one single .js file without build
+     * tooling. I thought I'd need to call useState maybe 5 times, but I kept wanting to
      * add new features and wanted to deploy this easily.
-     * 
+     *
      * Also React is so terrible for game development that I figured this code will never see
      * the light of day anyway, so why not.
-     * 
+     *
      * Frontend development is my ~passion~.
      */
     const [carPosition, setCarPosition] = React.useState(laneTwoPosition);
@@ -488,7 +488,7 @@ const Car = styled.div`
 
 const Container = styled.div`
     transform-origin: top;
-    transform: scale(1.6);
+    transform: scale(1.5);
     display: flex;
     width: min-content;
     margin: 0 auto;
@@ -535,6 +535,8 @@ const Container = styled.div`
 
 const Arena = styled.div`
     position: relative;
+    border: 2px solid black;
+    border-radius: 8px;
     height: ${(props) => props.height}px;
     width: ${(props) => props.width}px;
     background-color: blue;
@@ -620,6 +622,10 @@ const GameEndScreen = styled.div`
         height: 10%;
         cursor: pointer;
 `;
+
+let instructions = document.querySelector("#instructions");
+instructions.style =
+    "display: flex; flex-direction: column; align-items: center; font-family: roc-grotesk, sans-serif;";
 
 let domContainer = document.querySelector("#game_container");
 const root = ReactDOM.createRoot(domContainer);

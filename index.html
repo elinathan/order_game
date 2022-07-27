@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Racing game</title>
-    <link rel="stylesheet" href="https://use.typekit.net/qjx3bbu.css">
-  </head>
-  <body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Racing game</title>
+        <link rel="stylesheet" href="https://use.typekit.net/qjx3bbu.css" />
+    </head>
+    <body style="background-color: #eceee9">
+        <div id="instructions">
+            <h2
+                style="
+                    font-weight: 600;
+                    font-size: 3rem;
+                    letter-spacing: -0.1rem;
+                    align-items: center;
+                    margin: 1rem auto 0 auto;
+                "
+            >
+                Racing game
+            </h2>
+            <p style="font-weight: 400; text-align: center">
+                Race to your destination and pick up points along the way!<br />
+                On desktop, use your arrow keys to move the car. On mobile, swipe left and right.
+            </p>
+        </div>
+        <!-- <p>This page demonstrates using React with no build tooling.</p> -->
+        <!-- React component inside this div. -->
+        <div id="game_container"></div>
 
-    <h2>Racing game</h2>
-    <!-- <p>This page demonstrates using React with no build tooling.</p>
-    <p>Don't click the button</p> -->
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+        <script
+            src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+            crossorigin
+        ></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script src="https://unpkg.com/react-swipeable@7.0.0/dist/react-swipeable.js"></script>
+        <script src="https://unpkg.com/styled-components@4.3.2/dist/styled-components.min.js"></script>
 
-    <!-- We will put our React component inside this div. -->
-    <div id="game_container"></div>
-
-    <!-- Load React. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script src="https://unpkg.com/react-swipeable@7.0.0/dist/react-swipeable.js"></script>
-    <script src="https://unpkg.com/styled-components@4.3.2/dist/styled-components.min.js"></script>
-
-    <!-- Load React component. -->
-    <script src="App.js"></script>
-  </body>
+        <!-- Load React component. -->
+        <script src="App.js"></script>
+    </body>
 </html>
